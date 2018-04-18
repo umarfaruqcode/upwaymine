@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stat</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
+
+        <script src="js/angular.min.js"></script>
+
+        <script>
+        var app=angular.module('myApp', []);
+        app.controller('myCtrl', function($scope){
+            $scope.correlation=function(){
+                $scope.a=$scope.scores * $scope.scoresproduct - ($scope.yscores *$scope.xscores);
+                $scope.b=Math.sqrt(($scope.scores * $scope.sxscores - $scope.sxscores)*($scope.scores * $scope.syscores - $scope.syscores))
+                $scope.ans=$scope.a/$scope.b;
+                alert("The Correlation is "+$scope.ans);
+            }
+        });
+        </script>
+    </head>
+    <body class="skin-black" ng-app="myApp" ng-controller="myCtrl">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                STAT
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span>STATISCAL TOOLS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">                
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                        </div>
+                    </div>
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="mean.html">
+                            <span>Mean</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="median.html">
+                            <span>Median</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="std.html">
+                            <span>Standard deviation</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="variance.html">
+                            <span>Variance</span>
+                            </a>
+                        </li>
+                        <li  class="active">
+                            <a href="correlation.html">
+                            <span>Correlation</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">                
+
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Correlation Calculation</h3>
+                                </div><!-- /.box-header -->
+                                <!-- form start -->
+                        <form role="form">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="sum">number of pairs of scores</label>
+                                    <input type="number" class="form-control" ng-model="scores" placeholder="number of pairs of scores">
+                                </div>
+                                <div class="form-group">
+                                    <label for="num">number of the products of paired scores</label>
+                                    <input type="number" class="form-control" ng-model="scoresproduct" placeholder="number of the products of paired scores">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sum">sum of x scores</label>
+                                    <input type="number" class="form-control" ng-model="xscores" placeholder="sum of x scores">
+                                </div>
+                                <div class="form-group">
+                                    <label for="num">sum of y scores</label>
+                                    <input type="number" class="form-control" ng-model="yscores" placeholder="sum of y scores">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sum">sum of squared x scores</label>
+                                    <input type="number" class="form-control" ng-model="sxscores" placeholder="sum of squared x scores">
+                                </div>
+                                <div class="form-group">
+                                    <label for="num">sum of squared y scores</label>
+                                    <input type="number" class="form-control" ng-model="syscores" placeholder="sum of squared y scores">
+                                </div>
+                            </div><!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-primary" ng-click="correlation()">Calculate</button>
+                            </div>
+                        </form>
+                            </div><!-- /.box -->
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <script src="js/jquery.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
+        
+        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>
+    </body>
+</html>
